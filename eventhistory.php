@@ -1,9 +1,6 @@
 <?php
 include("dbconnect.php");
-$sql = "SELECT u.user_id, u.user_email,u.user_firstname,u.user_lastname,v.image,user_citizen,user_tel,v.reqdate
-FROM users u
-JOIN verifies v
-WHERE  u.user_id = v.user_id AND v.status='0';";
+$sql = "SELECT * FROM events";
 
 $query = mysqli_query($conn,$sql);
     ?>
@@ -155,16 +152,19 @@ for (i = 0; i < dropdown.length; i++) {
 }
 </script>
 <div class="title">
-<h4>Non-Verify</h4>
+<h4>Event History</h4>
 </div>
 
 <table id="customers">
   <tr>
     <th>No.</th>
-    <th>Email</th>
-    <th>Name</th>
-    <th>Request Date</th>
-    <th>More</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image Cover</th>
+    <th>Image Logo</th>
+    <th>Date Start</th>
+    <th>Date End</th>
+    <th>Date Location</th>
   </tr>
 <?php
     $no = 1;
@@ -172,57 +172,18 @@ for (i = 0; i < dropdown.length; i++) {
       
         echo "<tr>";
         echo "<td><center>" . $no . '</center></td>';
-        echo "<td> " . $row["user_email"] . '</td>';
-        echo "<td> " . $row["user_firstname"]. " " .$row["user_lastname"] . '</td>';
-        echo "<td> " . $row["reqdate"] . '</td>';
+        echo "<td> " . $row["event_title"] . '</td>';
+        echo "<td> " . $row["event_desc"] . '</td>';
+        echo "<td> " . $row["event_img_cover"] . '</td>';
+        echo "<td> " . $row["event_img_logo"] . '</td>';
+        echo "<td> " . $row["event_date_start"] . '</td>';
+        echo "<td> " . $row["event_date_end"] . '</td>';
+        echo "<td> " . $row["event_location"] . '</td>';
      
        // echo "<td> "."<img src ='http://pilot.cp.su.ac.th/usr/u07580319/holdit/pics/verify/".$row['image'] .">". "</td>";
         ?>
-        <td><center><button style='text-align:center;' type='button' class='btn btn-info' data-toggle='modal' data-target="#<?php echo $row['user_id']; ?>">info</button></center></td>
-        </tr>
+      
     
-        <div class="modal fade" id="<?php echo $row['user_id']; ?>">
-            <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">INFORMATION</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                <center><img src="<?php echo "http://pilot.cp.su.ac.th/usr/u07580319/holdit/pics/verify/".$row['image'] ?>" width="720px" height="450px"></center>
-                <br>
-                <h5>
-                Email : <?php
-                echo $row["user_email"];
-                ?><br>
-                Name : <?php echo $row['user_firstname']." ".$row['user_lastname'];
-                echo "<br>";
-                echo "Citizen No : ".$row['user_citizen'];
-                echo "<br>";
-                echo "Phone No : ".$row['user_tel'];
-                echo "<br>";
-                echo "Request Date: ".$row['reqdate'];
-                ?>
-                </h5>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">  
-              <form method="POST" action="verify_status.php?id=<?php echo $row['user_id'];?>">
-                <input type="submit" class="btn btn-success" name="change" value="ACCEPT"></form>
-                <form method="POST" action="verify_refuse.php">
-                <input type="submit" class="btn btn-danger" name="notchange" value="REFUSE">
-                </form>
-                </div>
-              
-                
-            </div>
-            </div>
-        </div>
        
         <?php
         $no++;

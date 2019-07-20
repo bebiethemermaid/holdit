@@ -74,7 +74,7 @@
         <div class="purple">
             <div class="centerform">
 
-                <form action="checklogin.php" method="POST">
+                <form action="#checklogin.php" method="POST">
                     <div class="form-group">
                         <label for="username">Username:</label>
                         <input style="width:370px" type="text" class="form-control" id="username" placeholder="Enter Username" name="username" required>
@@ -95,4 +95,3 @@
 </body>
 
 </html>
-

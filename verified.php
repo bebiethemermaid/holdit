@@ -1,12 +1,13 @@
 <?php
 include("dbconnect.php");
-$sql = "SELECT u.user_id, u.user_email,u.user_firstname,u.user_lastname,v.image,user_citizen,user_tel,v.reqdate
+$sql = "SELECT u.user_id, u.user_email,u.user_firstname,u.user_lastname,v.image,user_citizen,user_tel,v.reqdate,v.verdate
 FROM users u
 JOIN verifies v
-WHERE  u.user_id = v.user_id AND v.status='0';";
+WHERE  u.user_id = v.user_id AND v.status='1';";
 
 $query = mysqli_query($conn,$sql);
     ?>
+
 <html>
 <head>
 <meta charset="utf-8"
@@ -15,7 +16,7 @@ $query = mysqli_query($conn,$sql);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<style>
+  <style>
 
 #customers {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -155,7 +156,7 @@ for (i = 0; i < dropdown.length; i++) {
 }
 </script>
 <div class="title">
-<h4>Non-Verify</h4>
+<h4>Verified</h4>
 </div>
 
 <table id="customers">
@@ -164,6 +165,7 @@ for (i = 0; i < dropdown.length; i++) {
     <th>Email</th>
     <th>Name</th>
     <th>Request Date</th>
+    <th>Verify Date</th>
     <th>More</th>
   </tr>
 <?php
@@ -175,7 +177,7 @@ for (i = 0; i < dropdown.length; i++) {
         echo "<td> " . $row["user_email"] . '</td>';
         echo "<td> " . $row["user_firstname"]. " " .$row["user_lastname"] . '</td>';
         echo "<td> " . $row["reqdate"] . '</td>';
-     
+        echo "<td> " . $row["verdate"] . '</td>';
        // echo "<td> "."<img src ='http://pilot.cp.su.ac.th/usr/u07580319/holdit/pics/verify/".$row['image'] .">". "</td>";
         ?>
         <td><center><button style='text-align:center;' type='button' class='btn btn-info' data-toggle='modal' data-target="#<?php echo $row['user_id']; ?>">info</button></center></td>
@@ -193,6 +195,8 @@ for (i = 0; i < dropdown.length; i++) {
                 
                 <!-- Modal body -->
                 <div class="modal-body">
+                <h5>
+                Verify Image :<h5>
                 <center><img src="<?php echo "http://pilot.cp.su.ac.th/usr/u07580319/holdit/pics/verify/".$row['image'] ?>" width="720px" height="450px"></center>
                 <br>
                 <h5>
@@ -209,17 +213,7 @@ for (i = 0; i < dropdown.length; i++) {
                 ?>
                 </h5>
                 </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">  
-              <form method="POST" action="verify_status.php?id=<?php echo $row['user_id'];?>">
-                <input type="submit" class="btn btn-success" name="change" value="ACCEPT"></form>
-                <form method="POST" action="verify_refuse.php">
-                <input type="submit" class="btn btn-danger" name="notchange" value="REFUSE">
-                </form>
-                </div>
-              
-                
+   
             </div>
             </div>
         </div>
@@ -230,6 +224,6 @@ for (i = 0; i < dropdown.length; i++) {
   
 ?>
 </table>
-
 </body>
+
 </html>
