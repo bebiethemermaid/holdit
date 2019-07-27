@@ -76,7 +76,7 @@
 
                 <form action="checklogin.php" method="POST">
                     <div class="form-group">
-                        <label for="username">Username:</label>
+                        <label for="username">Email:</label>
                         <input style="width:370px" type="text" class="form-control" id="username" placeholder="Enter Username" name="username" required>
                     </div>
                     <div class="form-group">
@@ -85,6 +85,7 @@
                     </div>
                     <center>
                         <button type="submit" class="btn btn-primary" value="Login" id="Login">Login</button>
+                        
                     </center>
                 </form>
             </div>

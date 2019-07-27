@@ -134,6 +134,8 @@ margin-top:15px;
     <a href="create.php">Create Event</a>
     <a href="eventhistory.php">History</a>
   </div>
+  <a href="#eventrequest.php">Event Request</a>
+  <a href="#report.php">Report</a>
   <a href="login.php">Logout</a>
 
 </div>

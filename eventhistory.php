@@ -24,6 +24,7 @@ $query = mysqli_query($conn,$sql);
 #customers td, #customers th {
   border: 1px solid #ddd;
   padding: 8px;
+  font-size:17px;
 
 }
 
@@ -131,6 +132,8 @@ margin-top:15px;
     <a href="create.php">Create Event</a>
     <a href="eventhistory.php">History</a>
   </div>
+  <a href="#eventrequest.php">Event Request</a>
+  <a href="#report.php">Report</a>
   <a href="login.php">Logout</a>
 
 </div>
@@ -164,7 +167,7 @@ for (i = 0; i < dropdown.length; i++) {
     <th>Image Logo</th>
     <th>Date Start</th>
     <th>Date End</th>
-    <th>Date Location</th>
+    <th>Location</th>
   </tr>
 <?php
     $no = 1;

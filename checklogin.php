@@ -1,4 +1,26 @@
 <?php
+// include("dbconnect.php");
+// $username=$_POST['username'];
+// $password=md5($_POST['username']);
+// if($username==''){
+// echo "Check Email";}
+// else if($password==''){
+//     echo "Check Password";}
+//         else{
+//             $sql = mysqli_query("SELECT * FROM users where user_email=$username AND user_password=$password");
+//             $num = mysqli_num_rows($sql);
+//             if($num<=0){
+//                 echo "Invalid Email or Password";
+//             }
+//             else{
+//                 while($user=mysql_fetch_array($sql)){
+
+//                 }
+//             }
+        
+    
+// }
+
 include("dbconnect.php");
 $success="";
 $error="";
@@ -14,8 +36,8 @@ if($rowcount==1){
     header("Location: non-verify.php");
 }
 else{
-    header("Location: login.php");
-    
+header("Location: login.php");
+  
 }
 
 }
@@ -25,11 +47,3 @@ else{
 }
 
 ?>
-<!-- <script>
-$document.ready(function(){
-$('#Login').click(function(){
-
-});
-
-});
-</script> -->
